@@ -47,25 +47,29 @@ The CUAD-based contract triage pipeline is a high-value industrial use case with
 ---
 
 ## 🏢 About Accenture
-Accenture is a leading global professional services company that provides a broad range of services and solutions in strategy, consulting, technology, and operations. The team objective for this project is to modernize legal operations by leveraging artificial intelligence to increase the efficiency and accuracy of contract review processes.
+Accenture is a leading global professional services company that provides a broad range of services and solutions in strategy, consulting, technology, and operations. 
 
 ---
 
 ## 🎯 The Challenge
 ### Project Summary
-This project involves building a pipeline to automatically detect key clauses in commercial contracts and flag them by risk level (Low, Medium, High) to generate a consolidated triage score. By utilizing the CUAD dataset and applying NLP strategies like multi-label classification and explainable risk-scoring, the team will help legal and procurement departments prioritize high-risk documents. This effort directly addresses the manual labor bottleneck currently faced by teams reviewing thousands of contracts annually.
+In this project, you will use real-world commercial contracts from the CUAD dataset (510 contracts, 41 expert-annotated clause categories) and NLP techniques including chunk-based multi-label classification with fine-tuned transformer encoders, paired with an explainable rule-based risk-scoring layer, to build a pipeline that automatically detects key clauses, flags them as Low/Medium/High risk, and rolls these up into a contract-level triage score. This will help our company address the bottleneck legal and procurement teams face when manually reviewing tens of thousands of contracts a year to find the small number of clauses that carry meaningful risk, enabling reviewers to prioritize which contracts to open first.
 
 ### Success Criteria
-For clause detection: per-category precision/recall/F1. For risk scoring: Spearman correlation and bucket agreement between the model's risk rankings and the advisor's hand-ranked clauses.
+Success has two tracks:
+- For clause detection: per-category precision/recall/F1 clearly beating the baseline (accuracy is misleading under CUAD's imbalance), with error analysis on where the model struggles.   - - For risk scoring: since there are no ground-truth labels, success means strong Spearman correlation and bucket agreement between the model's risk rankings and the advisor's hand-ranked clauses, plus a sensitivity analysis showing the High/Medium boundary is stable.
+
+Overall, a successful December outcome is a working end-to-end pipeline producing risk-scored clause registers the advisor finds plausible and useful, a clean documented repo, and a final report covering results, limitations, and estimated reviewer time saved — an auditable triage tool the advisor would actually trust, not a black box.
+
+Stretch goals include span extraction, a trained risk model benchmarked against the rule-based baseline, LLM-generated clause explanations, broader category coverage, a Streamlit/Gradio demo, and an active-learning loop using advisor/model disagreements. These extend modeling or usability without affecting core deliverables.
 
 ### Project Milestones
 Use these milestones to guide your work. Your team will create a GitHub Projects board to track tasks within each milestone.
 | Month | Milestone | Key Activities |
 |-------|-----------|----------------|
-| **September** | Data Exploration & Preprocessing | Parsing raw CUAD PDFs, text normalization, and establishing token-level label alignment strategies for the target 41 categories. |
-| **October** | Feature Engineering & Baseline Modeling | Implementing chunk-based multi-label classification architectures and establishing baseline performance benchmarks using standard transformer encoders. |
-| **November** | Model Optimization & Evaluation | Conducting hyperparameter tuning, implementing the rule-based risk-scoring layer, and executing model validation against advisor-provided ground truth. |
-| **December** | Insights, Deliverables & Presentation | Finalizing the end-to-end pipeline, calculating reviewer time-saved metrics, and preparing the final technical presentation for stakeholders. |
+| **September** | [Title] | Clean and split the CUAD data, run EDA on class imbalance, build a chunking strategy, and establish a TF-IDF/keyword baseline with per-category metrics. |
+| **October** | [Title] | Fine-tune a transformer encoder for multi-label clause classification, address class imbalance, evaluate with per-category precision/recall/F1, and conduct error analysis. |
+| **November** | [Title] | Build and calibrate the four-signal risk-scoring layer, assemble the end-to-end pipeline, and validate risk rankings against advisor-labeled examples. |
 
 > **Note for the team:** Please create a GitHub Projects board in this repository to break these milestones into weekly tasks. Go to the **Projects** tab → **New project** → Choose **Board** → Add columns for each month.
 
@@ -75,7 +79,7 @@ Use these milestones to guide your work. Your team will create a GitHub Projects
 **Name and Source:** CUAD Dataset (Contract Understanding Atticus Dataset)  
 **Format:** JSON, Raw Text/PDF  
 **Size:** under 1gb  
-**Location:** [Link to be provided by Advisor during kickoff]  
+**Location:** https://github.com/TheAtticusProject/cuad  
 
 ### Key Details
 - Real-world commercial contracts from the CUAD dataset (510 contracts, 41 expert-annotated clause categories), raw text/PDF available.
