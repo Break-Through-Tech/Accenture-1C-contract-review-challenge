@@ -1,7 +1,7 @@
 # Contract Review Challenge
 
 **Company / Org:** Accenture  
-**Challenge Advisor:** Tate Arevalo, tate.arevalo@accenture.com
+**Challenge Advisor:** Tate Arevalo, tate.arevalo@accenture.com  
 **Program:** Break Through Tech AI Studio - Fall 2026  
 
 ---
